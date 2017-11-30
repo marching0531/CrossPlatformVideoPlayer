@@ -1,4 +1,5 @@
 using System;
+using VideoPlayer.Tizen.Tizen.TV.Port;
 
 namespace VideoPlayer.Tizen.Tizen.TV
 {
@@ -13,6 +14,7 @@ namespace VideoPlayer.Tizen.Tizen.TV
         static void Main(string[] args)
         {
             var app = new Program();
+            global::Xamarin.Forms.DependencyService.Register<MediaContentPort>();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }
