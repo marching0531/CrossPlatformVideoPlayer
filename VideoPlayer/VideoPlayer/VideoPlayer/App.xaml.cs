@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using VideoPlayer.Views;
 using Xamarin.Forms;
 
 namespace VideoPlayer
@@ -12,8 +12,8 @@ namespace VideoPlayer
         public App()
         {
             InitializeComponent();
-
-            MainPage = new VideoPlayer.MainPage();
+            
+            MainPage = new ListPage();
         }
 
         protected override void OnStart()
