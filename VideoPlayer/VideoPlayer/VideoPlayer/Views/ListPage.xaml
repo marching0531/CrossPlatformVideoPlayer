@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VideoPlayer.Views.ListPage">
+             xmlns:ViewModels="clr-namespace:VideoPlayer.ViewModels"
+             x:Class="VideoPlayer.Views.ListPage"
+             VideoList="{Binding VideoList}"
+             UpdateVideoListCommand="{Binding UpdateVideoListCommand}"
+             >
+    <ContentPage.BindingContext>
+        <ViewModels:ListPageViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <RelativeLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
