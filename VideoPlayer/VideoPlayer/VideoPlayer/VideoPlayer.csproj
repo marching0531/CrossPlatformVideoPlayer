@@ -42,6 +42,7 @@
     <Compile Include="Models\MediaItem.cs" />
     <Compile Include="Models\MediaItemProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\ListPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ItemView.xaml.cs">

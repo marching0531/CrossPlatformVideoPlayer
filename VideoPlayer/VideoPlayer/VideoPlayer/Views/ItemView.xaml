@@ -13,12 +13,14 @@
            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Width, Factor=0.96}"
            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Height, Factor=0.025}"
            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Width, Factor=0.02}"
+           Source="{Binding VideoItem.Thumbnail}"
            Aspect="AspectFill"/>
     <Label x:Name="Title"
            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.7}"
            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.07}"
            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Width, Factor=0.86}"
            TextColor="White"
+           Text="{Binding VideoItem.Title}"
            LineBreakMode="TailTruncation"/>
     <Button x:Name="FocusButton"
             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Height, Factor=0.95}"

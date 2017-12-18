@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoPlayer.Models;
+using VideoPlayerLite.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -44,7 +45,7 @@ namespace VideoPlayer.Views
 
             foreach (var item in VideoList)
             {
-                GridView.Children.Add(new Button() { Text = item.Title }, index / 3, index % 3);
+                GridView.Children.Add(new ItemView(item), index / 3, index % 3);
                 index++;
             }
         }
