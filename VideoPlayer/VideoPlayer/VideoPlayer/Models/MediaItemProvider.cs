@@ -16,20 +16,20 @@ namespace VideoPlayer.Models
 
         private IEnumerable<MediaItem> itemList;
         public IEnumerable<MediaItem> ItemList { get => itemList; }
-
+        
         private MediaItemProvider()
         {
             if(DependencyService.Get<IMediaContentAPIs>() != null)
             {
                 mediaContentAPIs = DependencyService.Get<IMediaContentAPIs>();
             }
+
+
         }
 
         public async Task Update()
         {
             itemList = await mediaContentAPIs.GetAllVideoItemListAsync();
         }
-
-
     }
 }
