@@ -32,7 +32,7 @@
                          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
                          Orientation="Horizontal">
                 <Label x:Name="ItemPosition"
-                       Text="00:00"/>
+                       Text="{Binding CurrentPosition, Converter={StaticResource DurationConverter}}"/>
                 <Label Text=" / " />
                 <Label x:Name="Duration"
                        Text="{Binding SelectedVideo.Duration, Converter={StaticResource DurationConverter}}"/>

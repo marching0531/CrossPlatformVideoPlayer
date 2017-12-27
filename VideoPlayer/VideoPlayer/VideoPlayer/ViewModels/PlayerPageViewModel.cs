@@ -50,6 +50,18 @@ namespace VideoPlayer.ViewModels
             }
         }
 
+        private int currentPosition;
+
+        public int CurrentPosition
+        {
+            get => currentPosition;
+            set
+            {
+                currentPosition = value;
+                InvokePropertyChanged();
+            }
+        }
+
         public PlayerPageViewModel()
         {
             FetchSelectedVideoCommand = new Command(() => SelectedVideo = MediaItemProvider.Instance.SelectedItem);

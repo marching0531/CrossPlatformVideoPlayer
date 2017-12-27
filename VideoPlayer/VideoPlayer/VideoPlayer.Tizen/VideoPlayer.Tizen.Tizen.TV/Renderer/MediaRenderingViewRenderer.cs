@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Tizen.Multimedia;
 using VideoPlayer.Tizen.Tizen.TV.Renderer;
 using VideoPlayer.Views;
@@ -15,6 +16,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
     public class MediaRenderingViewRenderer : ViewRenderer<MediaRenderingView, MediaView>
     {
         private Player player;
+        private Timer playPositionTimer;
 
         protected override void OnElementChanged(ElementChangedEventArgs<MediaRenderingView> e)
         {
@@ -27,6 +29,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
 
             if (e.OldElement != null)
             {
+                StopTimer();
                 player.PlaybackCompleted -= PlaybackCompleted;
                 player.PlaybackInterrupted -= PlaybackInterrupted;
             }
@@ -35,6 +38,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
             {
                 player = new Player();
 
+                StopTimer();
                 player.PlaybackCompleted += PlaybackCompleted;
                 player.PlaybackInterrupted += PlaybackInterrupted;
             }
@@ -56,6 +60,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
 
             if (e.PropertyName == MediaRenderingView.CurrentVideoProperty.PropertyName)
             {
+                StopTimer();
                 PlayVideo();
             }
             else if (e.PropertyName == MediaRenderingView.CurrentStatusProperty.PropertyName)
@@ -71,6 +76,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
                         if (player.State == PlayerState.Ready || player.State == PlayerState.Paused)
                         {
                             player.Start();
+                            StartTimer();
                         }
                         break;
                     case PlayerStatus.Paused:
@@ -78,6 +84,8 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
                         {
                             player.Pause();
                         }
+
+                        StopTimer();
                         break;
                     case PlayerStatus.Stopped:
                         if (player.State == PlayerState.Playing || player.State == PlayerState.Paused)
@@ -89,6 +97,8 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
                         {
                             player.Unprepare();
                         }
+
+                        StopTimer();
                         break;
                     default:
                         break;
@@ -129,6 +139,45 @@ namespace VideoPlayer.Tizen.Tizen.TV.Renderer
             {
                 ((IElementController)Element).SetValueFromRenderer(MediaRenderingView.CurrentStatusProperty, PlayerStatus.Stopped);
             }
+        }
+
+        private void StartTimer()
+        {
+            if (playPositionTimer != null)
+            {
+                return;
+            }
+
+            playPositionTimer = new Timer((x) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (playPositionTimer != null)
+                    {
+                        int playPosition = 0;
+
+                        if (player != null && (player.State == PlayerState.Ready || player.State == PlayerState.Paused || player.State == PlayerState.Playing))
+                        {
+                            playPosition = player.GetPlayPosition();
+                        }
+
+                        if (Element == null)
+                        {
+                            StopTimer();
+                        }
+                        else
+                        {
+                            ((IElementController)Element).SetValueFromRenderer(MediaRenderingView.CurrentPositionProperty, playPosition);
+                        }
+                    }
+                });
+            }, null, 0, 250);
+        }
+
+        private void StopTimer()
+        {
+            playPositionTimer?.Dispose();
+            playPositionTimer = null;
         }
     }
 }
