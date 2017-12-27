@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:VideoPlayer.ViewModels"
+             xmlns:Models="clr-namespace:VideoPlayer.Models"
              x:Class="VideoPlayer.Views.PlayerPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             FetchVideoCommand="{Binding FetchSelectedVideoCommand}">
+    <ContentPage.BindingContext>
+        <ViewModels:PlayerPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Models:DurationConverter x:Key="DurationConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout>
             <Label x:Name="ItemTitle"
@@ -11,7 +22,7 @@
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.06}"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
                    FontSize="Medium"
-                   Text="Title"/>
+                   Text="{Binding SelectedVideo.Title}"/>
             <StackLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.045}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.127}"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.911}"
@@ -21,7 +32,7 @@
                        Text="00:00"/>
                 <Label Text=" / " />
                 <Label x:Name="Duration"
-                       Text="00:00"/>
+                       Text="{Binding SelectedVideo.Duration, Converter={StaticResource DurationConverter}}"/>
             </StackLayout>
             <Grid x:Name="ControlPad"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.134}"
@@ -42,10 +53,14 @@
                         Grid.Column="1"/>
                 <Button x:Name="PrevButton"
                         Grid.Row="0"
-                        Grid.Column="0"/>
+                        Grid.Column="0"
+                        Command="{Binding ControlButtonCommand}"
+                        CommandParameter="Previous"/>
                 <Button x:Name="NextButton"
                         Grid.Row="0"
-                        Grid.Column="2"/>
+                        Grid.Column="2"
+                        Command="{Binding ControlButtonCommand}"
+                        CommandParameter="Next"/>
             </Grid>
         </RelativeLayout>
     </ContentPage.Content>

@@ -38,12 +38,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DurationConverter.cs" />
     <Compile Include="Models\IMediaContentAPIs.cs" />
     <Compile Include="Models\MediaItem.cs" />
     <Compile Include="Models\MediaItemProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\ListPageViewModel.cs" />
+    <Compile Include="ViewModels\PlayerPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ItemView.xaml.cs">
       <DependentUpon>ItemView.xaml</DependentUpon>

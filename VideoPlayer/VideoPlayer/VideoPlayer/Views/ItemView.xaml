@@ -27,5 +27,5 @@
             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Width, Factor=0.96}"
             Opacity="0"
             Clicked="OnItemClicked"
-            Command="{Binding setNewVideoCommand}"/>
+            Command="{Binding SetNewVideoCommand}"/>
 </RelativeLayout>
