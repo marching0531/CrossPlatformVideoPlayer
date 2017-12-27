@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoPlayer.Models;
-using VideoPlayerLite.ViewModels;
+using VideoPlayer.ViewModels;
 using Xamarin.Forms;
 
 namespace VideoPlayer.ViewModels

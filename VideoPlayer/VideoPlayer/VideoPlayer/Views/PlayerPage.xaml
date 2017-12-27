@@ -6,7 +6,8 @@
              xmlns:Models="clr-namespace:VideoPlayer.Models"
              x:Class="VideoPlayer.Views.PlayerPage"
              NavigationPage.HasNavigationBar="False"
-             FetchVideoCommand="{Binding FetchSelectedVideoCommand}">
+             FetchVideoCommand="{Binding FetchSelectedVideoCommand}"
+             PlayerStatus="{Binding CurrentStatus}">
     <ContentPage.BindingContext>
         <ViewModels:PlayerPageViewModel/>
     </ContentPage.BindingContext>
@@ -51,19 +52,21 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="PlayPauseButton"
-                        Grid.Row="0"
-                        Grid.Column="1"/>
-                <Button x:Name="PrevButton"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Command="{Binding ControlButtonCommand}"
-                        CommandParameter="Previous"/>
-                <Button x:Name="NextButton"
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        Command="{Binding ControlButtonCommand}"
-                        CommandParameter="Next"/>
+                <Views:PlayerButton x:Name="PlayPauseButton"
+                                    ButtonName="PlayPause"
+                                    ButtonImage="btn_viewer_control_pause_normal.png"
+                                    Grid.Row="0"
+                                    Grid.Column="1"/>
+                <Views:PlayerButton x:Name="PrevButton"
+                                    ButtonName="Previous"
+                                    ButtonImage="btn_viewer_control_previous_normal.png"
+                                    Grid.Row="0"
+                                    Grid.Column="0"/>
+                <Views:PlayerButton x:Name="NextButton"
+                                    ButtonName="Next"
+                                    ButtonImage="btn_viewer_control_next_normal.png"
+                                    Grid.Row="0"
+                                    Grid.Column="2"/>
             </Grid>
         </RelativeLayout>
     </ContentPage.Content>

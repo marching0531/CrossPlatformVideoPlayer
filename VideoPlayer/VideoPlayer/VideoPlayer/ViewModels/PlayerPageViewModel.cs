@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoPlayer.Models;
-using VideoPlayerLite.ViewModels;
+using VideoPlayer.Views;
+using VideoPlayer.ViewModels;
 using Xamarin.Forms;
 
 namespace VideoPlayer.ViewModels
@@ -58,6 +59,18 @@ namespace VideoPlayer.ViewModels
             set
             {
                 currentPosition = value;
+                InvokePropertyChanged();
+            }
+        }
+
+        private PlayerStatus currentStatus;
+
+        public PlayerStatus CurrentStatus
+        {
+            get => currentStatus;
+            set
+            {
+                currentStatus = value;
                 InvokePropertyChanged();
             }
         }
