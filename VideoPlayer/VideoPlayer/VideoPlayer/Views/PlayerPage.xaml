@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Views="clr-namespace:VideoPlayer.Views"
              xmlns:ViewModels="clr-namespace:VideoPlayer.ViewModels"
              xmlns:Models="clr-namespace:VideoPlayer.Models"
              x:Class="VideoPlayer.Views.PlayerPage"
@@ -16,6 +17,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout>
+            <Views:MediaRenderingView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"/>
             <Label x:Name="ItemTitle"
                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.046}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"
