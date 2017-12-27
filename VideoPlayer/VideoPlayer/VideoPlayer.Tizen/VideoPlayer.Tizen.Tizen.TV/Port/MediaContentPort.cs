@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tizen.Content.MediaContent;
 using VideoPlayer.Models;
+using System.IO;
 
 namespace VideoPlayer.Tizen.Tizen.TV.Port
 {
@@ -54,7 +55,7 @@ namespace VideoPlayer.Tizen.Tizen.TV.Port
             try
             {
                 var reader = mediaInfoCommand.SelectMedia(selectArguments);
-
+                
                 while (reader.Read())
                 {
                     var videoInformation = reader.Current as VideoInfo;

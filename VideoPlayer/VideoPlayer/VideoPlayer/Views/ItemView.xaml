@@ -25,5 +25,7 @@
     <Button x:Name="FocusButton"
             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Height, Factor=0.95}"
             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=BackgroundView, Property=Width, Factor=0.96}"
-            Opacity="0"/>
+            Opacity="0"
+            Clicked="OnItemClicked"
+            Command="{Binding setNewVideoCommand}"/>
 </RelativeLayout>

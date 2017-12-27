@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoPlayer.Models;
 using VideoPlayer.ViewModels;
+using VideoPlayer.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,6 +27,15 @@ namespace VideoPlayerLite.Views
 
             WidthRequest = height * 1.5f;
             InvalidateMeasure();
+        }
+
+        private void OnItemClicked(object sender, EventArgs e)
+        {
+            PlayerPage player = new PlayerPage();
+
+            player.Disappearing += (s, ev) => FocusButton.Focus();
+
+            Navigation.PushAsync(player);
         }
     }
 }

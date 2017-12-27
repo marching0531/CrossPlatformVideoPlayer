@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoPlayer.Models;
 using VideoPlayerLite.ViewModels;
+using Xamarin.Forms;
 
 namespace VideoPlayer.ViewModels
 {
@@ -23,9 +24,22 @@ namespace VideoPlayer.ViewModels
             }
         }
 
+        private Command setNewVideoCommand;
+
+        public Command SetNewVideoCommand
+        {
+            get => setNewVideoCommand;
+            set
+            {
+                setNewVideoCommand = value;
+                InvokePropertyChanged();
+            }
+        }
+
         public ItemViewModel(MediaItem item)
         {
             VideoItem = item;
+            SetNewVideoCommand = new Command(() => MediaItemProvider.Instance.SelectedItem = VideoItem);
         }
     }
 }

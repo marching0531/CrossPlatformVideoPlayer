@@ -5,6 +5,7 @@
              x:Class="VideoPlayer.Views.ListPage"
              VideoList="{Binding VideoList}"
              UpdateVideoListCommand="{Binding UpdateVideoListCommand}"
+             NavigationPage.HasNavigationBar="False"
              >
     <ContentPage.BindingContext>
         <ViewModels:ListPageViewModel/>

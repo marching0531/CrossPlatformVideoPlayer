@@ -16,7 +16,44 @@ namespace VideoPlayer.Models
 
         private IEnumerable<MediaItem> itemList;
         public IEnumerable<MediaItem> ItemList { get => itemList; }
-        
+
+        private MediaItem selectedItem;
+        private int selectedItemIndex;
+
+        public MediaItem SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                selectedItem = value;
+                selectedItemIndex = itemList.ToList().IndexOf(selectedItem);
+            }
+        }
+
+        public MediaItem MoveToNext()
+        {
+            selectedItemIndex++;
+
+            if (selectedItemIndex == itemList.Count())
+            {
+                selectedItemIndex = 0;
+            }
+
+            return selectedItem = itemList.ElementAt(selectedItemIndex);
+        }
+
+        public MediaItem MoveToPrev()
+        {
+            selectedItemIndex--;
+
+            if (selectedItemIndex < 0)
+            {
+                selectedItemIndex = itemList.Count() - 1;
+            }
+
+            return selectedItem = itemList.ElementAt(selectedItemIndex);
+        }
+
         private MediaItemProvider()
         {
             if(DependencyService.Get<IMediaContentAPIs>() != null)
